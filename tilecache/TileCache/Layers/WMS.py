@@ -19,12 +19,11 @@ class WMS(MetaLayer):
 
     def renderTile(self, tile):
         wms = WMSClient.WMS( self.url, {
-          "bbox": tile.bbox(),
-          "width": tile.size()[0],
-          "height": tile.size()[1],
-          "srs": self.srs,
           "format": self.mime_type,
-          "layers": self.layers,
+          "layer": self.layers,
+          "TileCol": tile.x,
+          "TileRow": tile.y,
+          "TileMatrix": 'EPSG:4326:' + tile.z
         }, self.user, self.password)
         tile.data, response = wms.fetch()
         return tile.data 

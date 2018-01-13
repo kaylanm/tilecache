@@ -15,8 +15,8 @@ except ImportError:
 HIDE_ALL = False 
 
 class WMS (object):
-    fields = ("bbox", "srs", "width", "height", "format", "layers", "styles")
-    defaultParams = {'version': '1.1.1', 'request': 'GetMap', 'service': 'WMS'}
+    fields = ("format", "layer", "style", "TileMatrix", "TileRow", "TileCol")
+    defaultParams = {'version': '1.0.0', 'request': 'GetTile', 'service': 'WMTS', 'TileMatrixSet': 'EPSG:4326'}
     __slots__ = ("base", "params", "client", "data", "response")
 
     def __init__ (self, base, params, user=None, password=None):
